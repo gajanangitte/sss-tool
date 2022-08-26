@@ -54,10 +54,19 @@ void use_sss(int _secret_len, int _total_shares, int _threshold_shares, int _sec
         polynomify(i, _secret_len, _total_shares, constant, coefficients, (int* )shares);
     }
 
+    //----------------------------------------------------------------
+    //----------------------------------------------------------------
+    //----------------------------------------------------------------
+    // output section
+    //----------------------------------------------------------------
+    //----------------------------------------------------------------
+    
+
     srand(unsigned (time(0)));
     char temp = rand()%26+98;
     string str = to_string(temp);
     ofstream output_f("outputs/secrets"+str+".txt"), input_f("test_cases/intermediate_input"+str+".txt");
+    
     input_f<<"d\n"<<_secret_len<<"\n"<<_total_shares<<"\n"<<_threshold_shares<<"\n"<<_threshold_shares<<"\n";
 
     for(int i = 0; i < _total_shares; i++) {

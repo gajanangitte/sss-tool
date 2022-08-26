@@ -10,10 +10,10 @@
 
 #### test_cases
 - input(i).txt: "i"th test case input file
-- intermediate_input(X).txt: "X"th (random number X) intermediate input file (for combining the shared keys, to retrieve the original secret)
+- intermediate_input(X).txt: (random number X) intermediate input file (for combining the shared keys, to retrieve the original secret)
 
 #### outputs
-- secrets(X).txt: contains shared secrets
+- secrets(X).txt: contains shared secrets corresponding to X-th intermediate_input
 
 ### How to Run:
 Make sure you have g++ installed.

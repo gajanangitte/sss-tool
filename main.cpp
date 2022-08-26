@@ -24,6 +24,7 @@
 using namespace std;
 
 // GF(2^8) => 256bits 1 byte, we can use char 
+// Updated: but we need more than ascii input. use int array as input instead
 
 int main(int argc, char **argv) {
 
@@ -57,7 +58,7 @@ int main(int argc, char **argv) {
         assert(_threshold_shares > 1);
     }
 
-
+    // to break our secret into shared keys 
     if(op == "e") {
         int _secret[_secret_len];
         cout<<"\n[INPUT] Enter the secret key: (Sequence of integers with value between 0 to 255) :";
@@ -67,6 +68,7 @@ int main(int argc, char **argv) {
 
         use_sss(_secret_len, _total_shares, _threshold_shares, _secret);
     }
+    // decode the shared keys to get the secret key
     else if(op == "d") {
         int num_shares;
         

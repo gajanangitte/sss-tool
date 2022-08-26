@@ -18,8 +18,13 @@ int solve_secret(int num_shares, int secret_len, int idx, pair<int,int>* modular
     return gf_mod(res);
 }
 
+// https://en.wikipedia.org/wiki/Shamir%27s_Secret_Sharing
+// Using computationally efficient approach for Lagrange coeff calc
 void fill_fractions(int num_shares, int* key_idx, pair<int,int>* modular_fractions) {
 
+    // ----------------------------------------------------------------
+    // TODO: Implement tables for calc' mod inv of even finite field values
+    // will fail for larger multiplications !!!!!
     
     for(int i = 0; i < num_shares; i++) {
         int res_num = 1;
@@ -40,6 +45,7 @@ void fill_fractions(int num_shares, int* key_idx, pair<int,int>* modular_fractio
         
     }
     
+    // debug
     // for (int i = 0; i < num_shares; i++) {
     //     cout<<modular_fractions[i].first<<" "<<modular_fractions[i].second<<endl;
     // }
@@ -47,6 +53,7 @@ void fill_fractions(int num_shares, int* key_idx, pair<int,int>* modular_fractio
 }
 
 void decode_sss(int secret_len, int threshold_shares, int num_shares, int* shares) {
+    
     int secret[secret_len];
     num_shares = threshold_shares;
 
@@ -60,6 +67,9 @@ void decode_sss(int secret_len, int threshold_shares, int num_shares, int* share
     for(int i=1; i < secret_len+1; i++) {
         secret[i-1] = solve_secret(num_shares, secret_len, i, modular_fractions, shares);
     }
+
+    // --------------------------------
+    // Output section
 
     cout<<"The secret key was: ";
     for(int i=0; i < secret_len;i++) {
